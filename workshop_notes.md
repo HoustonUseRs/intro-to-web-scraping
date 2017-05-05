@@ -5,12 +5,6 @@
 ### learning objective #2 is to show them one particular tool for using that structure to grab the data
 
 
-things that will be of interest but that we won't directly teach are: 
-* Scraping PDFs (we can mention for this they can use tabula and its drivers)
-* Scraping pages with logins, data loaded through PHP, Javascript (we can mention for this they can use selenium and its drivers)
-* Advanced crawling (we can mention for this they can use something like scrapy spiders)
-
-
 Example websites: 
 
 http://www.houstontx.gov/civicart/artbyzipcode.html
@@ -22,6 +16,13 @@ https://www.tsl.texas.gov/arc/genfirst.html
 https://www.houstontx.gov/courts/fine_and_fees.html
 
 http://www.houstontx.gov/solidwaste/holiday.html
+
+things that will be of interest but that we won't directly teach are: 
+* Scraping PDFs (we can mention for this they can use tabula and its drivers)
+* Scraping pages with logins, data loaded through PHP, Javascript (we can mention for this they can use selenium and its drivers)
+* Advanced crawling (we can mention for this they can use something like scrapy spiders)
+
+
 
 something else before (Ez mode)
 text grabbing only
