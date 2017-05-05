@@ -1,3 +1,9 @@
+
+### learning objective #1 is to teach people how to see the useful patterns in the structure behind the websites with data they want
+
+
+### learning objective #2 is to show them one particular tool for using that structure to grab the data
+
 Example websites: 
 something else before (Ez mode)
 text grabbing only
