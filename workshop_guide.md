@@ -29,11 +29,11 @@ for:
 
 "scraping" allows us to "scrape" information that we want from existing websites to build things using information available on the web.
 
-Tools/Set up
-Chrome
-Selector Gadget
-R
-RStudio
+#### Tools/Set up
+1. Chrome
+1. Selector Gadget
+1. R
+1. RStudio
 
 ## Workflow/Introduction to the steps
 To understand the steps of web scraping, let's start thinking about how we might manually "scrape" or what we might do for one-off situations where we want data off a webpage.
