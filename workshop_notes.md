@@ -4,6 +4,13 @@
 
 ### learning objective #2 is to show them one particular tool for using that structure to grab the data
 
+
+things that will be of interest but that we won't directly teach are: 
+* Scraping PDFs (we can mention for this they can use tabula and its drivers)
+* Scraping pages with logins, data loaded through PHP, Javascript (we can mention for this they can use selenium and its drivers)
+* Advanced crawling (we can mention for this they can use something like scrapy spiders)
+
+
 Example websites: 
 something else before (Ez mode)
 text grabbing only
