@@ -2,28 +2,32 @@
 
 
 ## Outline
-What is webscraping?
+
+#### What is webscraping?
 >>>
 
-Why might you need to scrape?
-brief why
-no API
-you want information from a lot of similar pages
-you want information structured in a way that you can easily use to analyze or make other things
-concrete example projects
-types of results
-visualization
-maps, charts, etc
-dashboard
-analysis
-with multiple rows of data
-with text for processing the language
-harvesting things...
-emails/contact info
-images
-downloading files/pdfs, etc.
-for all of these, "scraping" allows us to "scrape" information that we want from existing websites.
-this is very useful when we want to build things using information available on websites in a format that is not easy to use for building visualizations, dashboards, and analyses.
+#### Why might you need to scrape?
+
+* you want information from a lot of similar pages
+* you want information structured in a way that you can easily use to analyze or make other things
+* harvesting things...
+  * emails/contact info
+  * images
+  * downloading files/pdfs, etc.
+
+_and_
+
+* no API
+
+for: 
+
+* visualization
+* maps, charts, etc
+* dashboard
+* analysis
+* text processing
+
+"scraping" allows us to "scrape" information that we want from existing websites to build things using information available on the web.
 
 ## Flow of the workshop
 how to scrape, without any coding
