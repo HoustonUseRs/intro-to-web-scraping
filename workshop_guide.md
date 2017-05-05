@@ -83,8 +83,11 @@ https://github.com/pandafulmanda/stuffs/blob/master/get_and_plot_attendance.r --
 
 ### Next level stuff
 
-#### When all this breaks down
-For sites that need a simulated browser to get the content you want to scrape, that is achieved using something called Selenium.
+#### When these tools aren't enough
+
+Scraping PDFs (we can mention for this they can use tabula and its drivers)
+Scraping pages with logins, data loaded through PHP, Javascript (we can mention for this they can use selenium and its drivers)
+Advanced crawling (we can mention for this they can use something like scrapy spiders)
 
 #### finding help, and resources
 
