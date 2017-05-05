@@ -43,15 +43,15 @@ The manual version of what we are about to do now, is, going to a website we wan
 
 #### What are the discrete steps?
 
-pick a page
-load page in browser
-look at the page
-decide what information we want
-select it
-copy it
-open a new plain text file
-paste it
-save it
+1. pick a page
+1. load page in browser
+1. look at the page
+1. decide what information we want
+1. select it
+1. copy it
+1. open a new plain text file
+1. paste it
+1. save it
 
 
 Break/practice/learn some CSS selecting with:
