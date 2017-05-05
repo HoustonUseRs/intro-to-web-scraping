@@ -12,6 +12,13 @@ things that will be of interest but that we won't directly teach are:
 
 
 Example websites: 
+
+http://www.houstontx.gov/civicart/artbyzipcode.html
+http://cohweb.houstontx.gov/FIN_FeeSchedule/
+https://www.tsl.texas.gov/arc/genfirst.html
+https://www.houstontx.gov/courts/fine_and_fees.html
+http://www.houstontx.gov/solidwaste/holiday.html
+
 something else before (Ez mode)
 text grabbing only
 one other one with good table and no crawling
