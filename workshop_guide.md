@@ -29,28 +29,6 @@ for:
 
 "scraping" allows us to "scrape" information that we want from existing websites to build things using information available on the web.
 
-## Flow of the workshop
-how to scrape, without any coding
-this will help us learn the steps and principles that can be applied in whatever language -- Python, R, node, etc. you wish to work in
-3 examples coding in R
-simple text-grabbing to save to a file
-as you might do for an NLP project
-pull data from a webpage into a csv file
-as you might do for more general data analysis projects, or for visualization projects
-pull data from several pages of the same structure into a csv file
-as you might do for more general data analysis projects, or for visualization projects
-this is a simple example of "crawling"
-how to tell when a page might require an additional step to scrape
-
-this chunk should go somewhere else
-More advanced topics that are useful to know for scraping that we will not be covering but will share resources for:
-how to scrape
-content behind a login
-pages where the content has been written by JavaScript
-content that you have to click or fill out a form to get to without the website URL updating
-these other kinds of pages will require a web browser to be simulated and controlled 
-perhaps we can have a chart for this
-
 Tools/Set up
 Chrome
 Selector Gadget
@@ -80,7 +58,7 @@ Break/practice/learn some CSS selecting with:
 https://flukeout.github.io/
 
 
-### First example, scraping for text
+### First example, getting the text
 
 Do together
 pick the page and assign the URL to a variable
@@ -89,7 +67,7 @@ Then, allow time for people to scrape for texts from various elements as practic
 
 Bring the pieces of information together
 
-### Second example, scraping 
+### Second example, selecting for specific text
 maybe http://www.houstontx.gov/departments.html
 
 
@@ -98,13 +76,15 @@ this will require showing how selector gadget will not nicely select the table f
 `read_html(depts) %>% html_nodes('.table150 a') %>% html_attr('href')`
 
 
-### Third example
+### Third example - introducing crawling
 http://www.espn.com/nba/attendance
 https://github.com/pandafulmanda/stuffs/blob/master/get_and_plot_attendance.r -- make a simpler version of this without mapping, just using looping.
 
 
 ### Next level stuff
+
+#### When all this breaks down
 For sites that need a simulated browser to get the content you want to scrape, that is achieved using something called Selenium.
 
-Next steps, finding help, and resources
+#### finding help, and resources
 
