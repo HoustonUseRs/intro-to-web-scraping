@@ -1,10 +1,10 @@
 # Intro to Web Scraping
 
-
 ## Outline
 
 #### What is webscraping?
->>>
+
+Put simply, **scraping** is extracting data - text or numbers - *from* the web *to* a file
 
 #### Why might you need to scrape?
 
