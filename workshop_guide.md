@@ -37,9 +37,9 @@ RStudio
 
 ## Workflow/Introduction to the steps
 To understand the steps of web scraping, let's start thinking about how we might manually "scrape" or what we might do for one-off situations where we want data off a webpage.
-For a human
-How might we manually "scrape" one page for specific chunks of information?  What are the common scenarios?
-The manual version of what we are about to do now, is, going to a website we want information from, going to a section that we want, selecting the text that we want, and then copying and pasting it into a plain text file to save it.
+
+The easiest approach would be to simply copy and paste the text directly from the page. How might we manually "scrape" one page for specific chunks of information?  We need to enumerate the exact steps, in order to tell the computer.
+
 
 #### What are the discrete steps?
 
