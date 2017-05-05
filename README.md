@@ -1,6 +1,6 @@
 Hi,
 
-We're excited you'll be joining us tomorrow for the Intro to web scraping workshop, 9 AM at The Iron Yard in Montrose!
+We're excited you'll be joining us tomorrow for the Intro to Web Scraping Workshop, 9 AM at The Iron Yard in Montrose!
 
 If you get a chance to, please set up your computer following the instructions below.  If not, or if you run into any trouble at all, join us early between 8 and 9 AM and we'll get you set up and ready to go.
 
