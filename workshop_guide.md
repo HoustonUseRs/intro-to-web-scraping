@@ -214,8 +214,9 @@ The small adjustment we made to the CSS selector shows how powerful selectors ca
 
 ### When these tools aren't enough
 
-Check out https://www.governmentjobs.com/careers/houston . The page has a table-like structure like the previous page we looked at but with one exception- it includes a login. We could scrape the table as is, but if we wanted to access user specific data, we need to figure out how to login during our scraping session. Luckily, there is a tool we can use called Selenium. Selenium is a piece of software that is able to automate browsers. With it, we can simulate clicking buttons, filling in forms, pressing certain keys etc. Let's look at what we can do with Selenium....
+Let's try scraping https://www.governmentjobs.com/careers/houston. The page has a table-like structure like the previous page we looked at. Take a look at the page source. Hmm... Doesn't look like the content is showing up in the view source...
 
+Luckily, there is a tool we can use called Selenium. Selenium is a piece of software that is able to automate browsers. With it, we can simulate clicking buttons, filling in forms, pressing certain keys etc. Let's look at what we can do with Selenium....
 
 
 #### Finding help &  Extra Resources
