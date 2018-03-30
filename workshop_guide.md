@@ -301,9 +301,8 @@ dat <- job_link %>%
 
 Review what you learned today and more with this rvest [Data Camp tutorial](https://www.datacamp.com/community/news/web-scraping-in-r-rvest-tutorial-43z6wf5u86)
 
-
 Learn to scrape data in Python using [Beautiful Soup and Pandas](https://pythonprogramminglanguage.com/web-scraping-with-pandas-and-beautifulsoup/) 
 
-Advanced Web Crawling with Scrapy
+Advanced Web Crawling with [Scrapy](https://scrapy.org/)
 
-Scraping PDF documents with Tabula
+Scraping PDF documents with [Tabula](http://tabula.technology/)
