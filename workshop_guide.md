@@ -214,18 +214,17 @@ The small adjustment we made to the CSS selector shows how powerful selectors ca
 
 ### When these tools aren't enough
 
-View source of https://www.governmentjobs.com/careers/houston, needing to log in, etc.
+Check out https://www.governmentjobs.com/careers/houston . The page has a table-like structure like the previous page we looked at but with one exception- it includes a login. We could scrape the table as is, but if we wanted to access user specific data, we need to figure out how to login during our scraping session. Luckily, there is a tool we can use called Selenium. Selenium is a piece of software that is able to automate browsers. With it, we can simulate clicking buttons, filling in forms, pressing certain keys etc. Let's look at what we can do with Selenium....
 
 
 
-
-1. Scraping PDFs (we can mention for this they can use tabula and its drivers)
-1. Scraping pages with logins, data loaded through PHP, Javascript (we can mention for this they can use selenium and its drivers)
-1. Advanced crawling (we can mention for this they can use something like scrapy spiders)
-
-#### Finding help &  Resources
+#### Finding help &  Extra Resources
 
 Review what you learned today and more with this rvest [Data Camp tutorial](https://www.datacamp.com/community/news/web-scraping-in-r-rvest-tutorial-43z6wf5u86)
 
 
 Learn to scrape data in Python using [Beautiful Soup and Pandas](https://pythonprogramminglanguage.com/web-scraping-with-pandas-and-beautifulsoup/) 
+
+Advanced Web Crawling with Scrapy
+
+Scraping PDF documents with Tabula
