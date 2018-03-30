@@ -1,4 +1,6 @@
-We are now going to try an example that involves 'web crawling'- a practice that requires 'looping' through multiple web pages in an automated fashion instead of one page at a time. 
+## Scrape multiple pages
+
+We are now going to try an example that involves 'web crawling' - a practice that requires 'looping' through multiple web pages in an automated fashion instead of one page at a time. 
 
 Let's take a look at some nba data. Go to this link:
 http://www.espn.com/nba/attendance. 
@@ -18,8 +20,10 @@ Next, lets create a variable called ```espn_data```. Similar like we did in the 
 Since we want the data in a manageable format, we are going to also pipe ```html_table(header = TRUE)``` which will grab what we want and put it in a table, or more precisely, a dataframe.
 
 ```r
-espn_year_data <- espn_year_url %>%
-  read_html() %>
+espn_html <- espn_year_url %>%
+  read_html()
+
+espn_year_data <- espn_html %>%
   html_node('table')
 ```
 
@@ -59,6 +63,29 @@ We keep track of all of the different years by binding the rows of the current t
 Since we are not going to be analyzing the data right away, let's save our resulting dataframe as a csv.
 
 ```write.csv(espn_years_data, file = "espn_years_data.csv")```
+
+Another way to grab the urls for each year is to scrape for the values in the dropdown options like so:
+
+```
+espn_year_urls <- espn_html  %>%
+  html_node('.tablesm') %>%
+  html_nodes('option') %>%
+  html_attr('value')
+```
+
+Now, you can loop over each url in a similar manner:
+
+```
+espn_years_data <- data.frame()
+for (espn_year_url in espn_year_urls) {
+  espn_year_data <- espn_year_url %>%
+    paste0('http:', .) %>%
+    read_html() %>%
+    html_node('table') %>%
+    html_table()
+  espn_years_data <- rbind(espn_years_data, espn_year_data)
+}
+```
 
 Congrats on building your first web crawler using R! Looping through web pages is super powerful, and will allow you to analyze large amounts of interesting data floating out there on the web. 
 
