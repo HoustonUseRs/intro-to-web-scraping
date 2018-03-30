@@ -392,7 +392,7 @@ dat <- job_link %>%
 
 | Name       | Description                                                                     |
 |------------|---------------------------------------------------------------------------------|
-| read_html  | Creates an html document from a url, a file on disk or a string containing html |
+| read_html  | Read an HTML document from a url, a file on disk or a string containing html    |
 | html_nodes | Select nodes from an HTML document                                              |
 | html_text  | Extract attributes, text and tag name from html.                                |
 | html_table | Parse an html table into a data frame.                                          |
