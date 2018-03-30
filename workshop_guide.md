@@ -370,7 +370,7 @@ job_page <- job_url %>%
 
 The functions we used previously don't seem to be returning what we want.
 
-To troubleshoot this, let's take a look at the page source. Hmm... Doesn't look like the content is showing up in the view source.If the content you are looking for is not in view source, it means that the information you want to scrape is being written into the HTML page using JavaScript, and we will need to scrape the content using a simulated browser. The simulated browswer will run the page as if it were actually loaded by a browser so that the JavaScript can run, and write the content that we want to grab.
+To troubleshoot this, let's take a look at the page source.  Hmm... Doesn't look like the content is showing up in the view source.  If the content you are looking for is not in view source, it means that the information you want to scrape is being written into the HTML page using JavaScript, and we will need to scrape the content using a simulated browser. The simulated browwer will run the page as if it were actually loaded by a browser so that the JavaScript can run, and write the content that we want to grab.
 
 Luckily, there is a tool we can use called Selenium. Selenium is a piece of software that is able to automate browsers. With it, we can simulate clicking buttons, filling in forms, pressing certain keys etc. R has a library called `RSelenium` that allows us to use Selenium functionality. 
 
