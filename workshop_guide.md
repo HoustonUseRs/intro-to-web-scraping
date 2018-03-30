@@ -85,15 +85,15 @@ Along with the steps from before, we will need to add one step, which is to find
 
 Let's load the page in Chrome.  We can see that if we hover over the first person's link, the lower left hand of our browser displays an email link.  There's no easy way for us to manually get the email link address for each person by copying and pasting as before.
 
-Getting a grasp on how the computer sees the page will help us communicate to it what part or parts of the page to select to grab information from.  Let's "inspect" the page.
+Getting a grasp of how the computer sees the page will help us tell it what part(s) to grab.  Let's "inspect" the page.
 
-The code we see when we inspect the page is what the browser translates into the webpage as we see it right now.  For this webpage, the code that we are seeing is what our code for automated scraping will download from the Internet to scrape information from.
+The code we see when we inspect the page is what the browser translates into the webpage.  For this webpage, this source code is what our scraper code will download from the Internet.
 
-We can see the HTML, or the code for the content of the page here.  If we inspect the code specifically for the name of the first person by right clicking on it and choosing the "Inspect" option, we see the HTML for just that link highlighted.
+We can look at the HTML, or the code page content.  If we inspect the code specifically for the name of the first person by right clicking on it and choosing the "Inspect" option, we see the HTML for just that link highlighted.
 
-We can see both the text of the link in between the `<a>` and `</a>` things, but also, we can see the link address that it links to by the `href=` thing.  Let's inspect the name of the second person by right clicking on it and choosing the "Inspect" option as before.  We see a similar pattern with the second person's name and email link.
+We can see both the text of the link in between the `<a>` and `</a>` things. We also can see the address it links to by the `href=` thing.  Let's inspect the name of the second person by right clicking on it and choosing the "Inspect" option as before.  We see a similar pattern with the second person's name and email link.
 
-The code for pretty much any link on any website will look similar.  The `<a>` and `</a>` things are the opening and closing tags.  The `href=` thing is called an attribute, where the attribute is named `href` and the value is the link address itself.  This unit of HTML, with the opening and closing tags, the attributes, and the content the tag encloses, is called an HTML element.
+The code for pretty much any link on a website will look similar.  The `<a>` and `</a>` things are the opening and closing tags.  The `href=` thing is called an attribute, where the attribute is named `href` and the value is the link address itself.  This unit of HTML, with the opening and closing tags, the attributes, and the content the tag encloses, is called an HTML element.
 
 If we glance at the HTML around the HTML for the links, we will see a similar pattern of open and closing tags for content, along with different attributes for that content on the opening tags.
 
@@ -101,15 +101,15 @@ In addition to `a`/link elements, HTML has `table` elements, list elements, para
 
 For it's appearance, such as the color of links, or the font to use for the paragraphs, websites use CSS.  CSS works with selections and appearance rules for those selections.  That is, it has selectors that match for specific elements or element, and then it declares how those things should be styled in between the curly brackets.
 
-We can use these same selectors to communicate what selections to scrape from.  There are other options for selectors, but CSS selectors for scraping is both powerful and flexible.
+We can use these same selectors to communicate what selections need to be scraped.  There are other options for selectors, but CSS selectors are both powerful and flexible.
 
-Now that we've looked at the page and understand it's structure a bit, we can think about what information we're wanting to scrape, and how we can select for them.  The Inspector will help us, but we can also use the Selector Gadget plugin to help us further.
+Now that we've looked at the page and understand its structure a bit, we can think about what information we're wanting to scrape, and selectors we need to scrape them.  The Inspector will help us, but we can also use the Selector Gadget plugin to help us further.
 
 ### Determine a "selector" for where the information is
 
 Let's turn it on.  If we click on an element, what we clicked on will turn green.  However, the selector for that element can be used to select all elements that match.  Those additional matches are now in yellow.  We can click on elements we want to exclude of the yellow ones, and they will turn red once the selector box updates to exclude them.  You can click the `?` on the Selector Gadget at anytime for a reminder of how it works.
 
-Notice how the text in the left box changes with our different clicks.  That is the selector that will select for the green and yellow elements.  The `clear` button is very handy if you want to start over with making your selector.
+Notice how the text in the left box changes with our different clicks.  That informs us that the selector will select for green and yellow elements.  The `clear` button is very handy if you want to start over with making your selector.
 
 To select for just the links per person, we click on the first person's link, and click on a yellow link in the top section to exclude links outside of the people boxes.  We get something like `.table150 a`.  Let's make a note of this selector.  
 
@@ -355,10 +355,6 @@ Sometimes you don't necessarily know the number of pages you need to loop over. 
 Congrats on building your first web crawler using R! Looping through web pages is super powerful, and will allow you to analyze large amounts of interesting data floating out there on the web. 
 
 
-
-
-
-
 ### Next level stuff
 
 ### When these tools aren't enough
@@ -392,7 +388,21 @@ dat <- job_link %>%
   html_table()
 ```
 
+### rvest cheat sheet
+
+| Name       | Description                                                                     |
+|------------|---------------------------------------------------------------------------------|
+| read_html  | Creates an html document from a url, a file on disk or a string containing html |
+| html_nodes | Select nodes from an HTML document                                              |
+| html_text  | Extract attributes, text and tag name from html.                                |
+| html_table | Parse an html table into a data frame.                                          |
+| html_attrs | Extract html attributes                                                         |
+
 #### Finding help &  Extra Resources
+
+
+Quite a bit of data cleaning can be required when scraping, especially text data. Check out the [stringR](http://stringr.tidyverse.org/articles/stringr.html) package for easy text manipulation. 
+
 
 Review what you learned today and more with this rvest [Data Camp tutorial](https://www.datacamp.com/community/news/web-scraping-in-r-rvest-tutorial-43z6wf5u86)
 
