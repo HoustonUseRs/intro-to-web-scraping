@@ -206,6 +206,60 @@ close(fileConn)
 The small adjustment we made to the CSS selector shows how powerful selectors can be.  This [interactive tutorial](https://flukeout.github.io/) teaches us about CSS selectors and helps us get practice.
 
 
+BONUS CHALLENGE: 
+Try using what you've learned so far in R and rvest to scrape for 'name', 'phone number', 'email', 'department', and 'website'. This requires a little bit of data cleaning. 
+
+Here's one way of going about it: 
+```r
+depts_url <- "http://www.houstontx.gov/departments.html"
+
+#get name and department
+name_dept <- depts_url %>%
+  read_html() %>%
+  html_nodes(".table150") %>%
+  html_nodes("p") %>%
+  html_nodes("a") %>%
+  html_text() %>%
+  gsub("\\n|\\s{2,}", " ", .) %>%
+  trimws()
+
+
+#get website and email
+website_email<- depts_url %>%
+  read_html() %>%
+  html_nodes(".table150") %>%
+  html_nodes("p") %>%
+  html_nodes("a") %>%
+  html_attr("href")
+
+#get phone number
+phone_number <- depts_url %>%
+  read_html() %>%
+  html_nodes(".table150") %>%
+  html_nodes("p") %>%
+  html_text() %>%
+  stringr::str_extract("[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}") %>%
+  unlist()
+
+
+name_dept <- name_dept[!name_dept == '']
+contact_name <- name_dept[seq(1 ,by =2, length(name_dept))]
+dept <- name_dept[!name_dept %in% contact_name]
+emails <- website_email[seq(1 ,by =2, length(website_email))]
+website <- website_email[!website_email %in% emails]
+phone <- phone_number[!is.na(phone_number)]
+
+
+df <- data.frame(Names = contact_name,
+                 Phone = phone,
+                 Email = email,
+                 Dept = dept,
+                 Website = website)
+
+
+```
+
+
 ## [Scrape a table of data using code](./README_3.md)
 
 
@@ -214,10 +268,34 @@ The small adjustment we made to the CSS selector shows how powerful selectors ca
 
 ### When these tools aren't enough
 
-Let's try scraping https://www.governmentjobs.com/careers/houston. The page has a table-like structure like the previous page we looked at. Take a look at the page source. Hmm... Doesn't look like the content is showing up in the view source...
+Let's try scraping [https://www.governmentjobs.com/careers/houston](https://www.governmentjobs.com/careers/houston). The page has a table-like structure like the previous page we looked at. Let's try scraping it with rvest by choosing a selector. 
+```r
+job_url <- "https://www.governmentjobs.com/careers/houston"
+job_page <- job_url %>%
+  read_html() %>%
+  html_nodes('.table') %>%
+  html_table()
+```
 
-Luckily, there is a tool we can use called Selenium. Selenium is a piece of software that is able to automate browsers. With it, we can simulate clicking buttons, filling in forms, pressing certain keys etc. Let's look at what we can do with Selenium....
+The functions we used previously don't seem to be returning what we want.
 
+To troubleshoot this, let's take a look at the page source. Hmm... Doesn't look like the content is showing up in the view source.If the content you are looking for is not in view source, it means that the information you want to scrape is being written into the HTML page using JavaScript, and we will need to scrape the content using a simulated browser. The simulated browswer will run the page as if it were actually loaded by a browser so that the JavaScript can run, and write the content that we want to grab.
+
+Luckily, there is a tool we can use called Selenium. Selenium is a piece of software that is able to automate browsers. With it, we can simulate clicking buttons, filling in forms, pressing certain keys etc. R has a library called `RSelenium` that allows us to use Selenium functionality. 
+
+Using the same rvest functions combined with the power of Selenium, we can now successfully scrape the page with this script.
+
+```r
+job_url <- "https://www.governmentjobs.com/careers/houston"
+rsDriver <- rsDriver(port = 4444L,browser= "chrome")
+rsDr <- rsDriver$client
+rsDr$open()
+rsDr$navigate(url)
+job_link = read_html(rsDr$getPageSource()[[1]])
+dat <- job_link %>%
+  html_nodes(".table") %>%
+  html_table()
+```
 
 #### Finding help &  Extra Resources
 
