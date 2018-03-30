@@ -216,9 +216,16 @@ The small adjustment we made to the CSS selector shows how powerful selectors ca
 
 View source of https://www.governmentjobs.com/careers/houston, needing to log in, etc.
 
-Scraping PDFs (we can mention for this they can use tabula and its drivers)
-Scraping pages with logins, data loaded through PHP, Javascript (we can mention for this they can use selenium and its drivers)
-Advanced crawling (we can mention for this they can use something like scrapy spiders)
 
-#### finding help, and resources
 
+
+1. Scraping PDFs (we can mention for this they can use tabula and its drivers)
+1. Scraping pages with logins, data loaded through PHP, Javascript (we can mention for this they can use selenium and its drivers)
+1. Advanced crawling (we can mention for this they can use something like scrapy spiders)
+
+#### Finding help &  Resources
+
+Review what you learned today and more with this rvest [Data Camp tutorial](https://www.datacamp.com/community/news/web-scraping-in-r-rvest-tutorial-43z6wf5u86)
+
+
+Learn to scrape data in Python using [Beautiful Soup and Pandas](https://pythonprogramminglanguage.com/web-scraping-with-pandas-and-beautifulsoup/) 
