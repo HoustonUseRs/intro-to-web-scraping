@@ -18,9 +18,10 @@ If you've set up for our Intro to R workshop, skip steps 2 and 3.
 2. [Download and install R](https://cran.r-project.org/bin/macosx/R-3.4.4.pkg)
 3. [Download and install RStudio](https://download1.rstudio.org/RStudio-1.1.442.dmg)
 4. Copy and paste this into RStudio, press enter to run
+
 ```
-working_path <- '~/intro-to-web-scraping-201803'
 install.packages(c('tidyverse'))
+working_path <- '~/intro-to-web-scraping-201803'
 dir.create(file.path(working_path), showWarnings = FALSE)
 setwd(working_path)
 ```
@@ -31,9 +32,10 @@ setwd(working_path)
 2. [Download and install R](https://cran.r-project.org/bin/windows/base/R-3.4.4-win.exe)
 3. [Download and install RStudio](https://download1.rstudio.org/RStudio-1.1.442.exe)
 4. Copy and paste this into RStudio, press enter to run
+
 ```
-working_path <- '~/intro-to-web-scraping-201803'
 install.packages(c('tidyverse'))
+working_path <- '~/intro-to-web-scraping-201803'
 dir.create(file.path(working_path), showWarnings = FALSE)
 setwd(working_path)
 ```
@@ -44,9 +46,10 @@ setwd(working_path)
 2. [Download and install R](https://cran.r-project.org/bin/linux/ubuntu/README.html)
 3. [Download and install RStudio](https://download1.rstudio.org/rstudio-1.1.442-amd64.deb)
 4. Copy and paste this into RStudio, press enter to run
+
 ```
-working_path <- '~/intro-to-web-scraping-201803'
 install.packages(c('tidyverse'))
+working_path <- '~/intro-to-web-scraping-201803'
 dir.create(file.path(working_path), showWarnings = FALSE)
 setwd(working_path)
 ```
@@ -57,7 +60,7 @@ setwd(working_path)
 
 The Station building entrance is [located on Polk Street](https://www.google.com/maps/@29.7539371,-95.3653969,3a,75y,215.35h,92.01t/data=!3m6!1e1!3m4!1sWXeizZckOW8SmgHA9EMVeA!2e0!7i13312!8i6656). 
 
-![Station entrance](./assets/station-houston.png)
+![Station entrance](https://houstonusers.github.io/intro-to-web-scraping/assets/station-houston.png)
 
 ## Parking
 
