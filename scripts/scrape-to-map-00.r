@@ -5,13 +5,14 @@ library(ggmap)
 library(leaflet)
 library(dplyr)
 
-places <- c()
+results_url <- 'https://www.har.com/montrose/homes-for-sale/91?bedroom_min=1&full_bath_min=1&listing_price_max=600000'
 
-base_url <- 'https://www.har.com/'
+places_urls <- results_url %>%
+  read_html() %>%
+  html_nodes('.mpi_info .address') %>%
+  html_attr('href')
 
-scrape_for_house <- function (place) {
-  place_url <- place %>%
-    paste0(base_url, .)
+scrape_for_house <- function(place_url) {
   place_html <- place_url %>%
     read_html()
 
@@ -69,19 +70,27 @@ scrape_for_house <- function (place) {
     gsub(' /Appraisal District', '', .) %>%
     parse_number()
 
-  lot_size <- place_html %>%
-    html_node(xpath='//div[text()="Lot Size:"]') %>%
-    html_node(xpath='../div[2]') %>%
-    html_text() %>%
-    gsub(' Sqft. /Appraisal District', '', .) %>%
-    parse_number()
+  lot_size_node <- place_html %>%
+    html_node(xpath='//div[text()="Lot Size:"]')
+
+  lot_size <- NA
+
+  if (!is.na(lot_size_node)) {
+    lot_size <- lot_size_node %>%
+      html_node(xpath='../div[2]') %>%
+      html_text() %>%
+      gsub(' Sqft. /Appraisal District', '', .) %>%
+      parse_number()
+  }
 
   style <- place_html %>%
     html_node(xpath='//div[text()="Style:"]') %>%
     html_node(xpath='../div[2]') %>%
     html_text()
 
-  location <- address %>%
+  location <- address  %>%
+    gsub('\\#.', '', .) %>%
+    trimws() %>%
     geocode(., source='dsk')
 
   place_data <- list(
@@ -107,7 +116,7 @@ make_label <- function(place_data) {
   return(paste0(place_data$address, '\n\n', 'Price:', place_data$price))
 }
 
-places_data <- places %>%
+places_data <- places_urls %>%
   map(scrape_for_house) %>%
   bind_rows()
 
@@ -124,7 +133,10 @@ leaflet(data = places_data) %>% addTiles() %>%
   addCircleMarkers(
     ~long,
     ~lat,
-    radius = ~(lot_size)/500,
+    radius = ~(lot_size %>%
+                 is.na() %>%
+                 ifelse(0, lot_size)
+               )/500,
     color = ~colorNumeric("Blues", domain = (min_price/2000):(max_price/1000 + 1))(price/1000),
     fillOpacity = 1,
     popup = ~paste0(
