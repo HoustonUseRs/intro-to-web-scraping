@@ -1,8 +1,10 @@
 # Intro to Web Scraping
 
+Find this guide online at [houstonhackathon.com/scraping](http://houstonhackathon.com/scraping)
+
 ## What is web scraping?
 
- **Scraping** is extracting data - text or numbers - *from* the web *to* a file.
+**Scraping** is extracting data - text or numbers - *from* the web *to* a file.
 
 ## Why might you need to scrape?
 
@@ -97,6 +99,8 @@ We can see both the text of the link in between the `<a>` and `</a>` things. We 
 The code for pretty much any link on a website will look similar.  The `<a>` and `</a>` things are the opening and closing tags.  The `href=` thing is called an attribute, where the attribute is named `href` and the value is the link address itself.  This unit of HTML, with the opening and closing tags, the attributes, and the content the tag encloses, is called an HTML element.
 
 ![An example of HTML, image from Jon Duckett's JavaScript and jQuery book](./assets/html-element-duckett-javascript-and-jquery-page.png)
+
+<small>An example of HTML, image from Jon Duckett's JavaScript and jQuery book</small>
 
 If we glance at the HTML around the HTML for the links, we will see a similar pattern of open and closing tags for content, along with different attributes for that content on the opening tags.
 
