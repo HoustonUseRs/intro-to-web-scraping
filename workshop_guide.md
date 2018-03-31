@@ -162,6 +162,13 @@ odd_locations <- link_addresses %>%
 email_addresses <- link_addresses[odd_locations]
 
 # or, we can adjust the CSS selector.
+# one option for CSS selector
+link_addresses <- depts_url %>%
+  read_html() %>%
+  html_nodes(".table150 a:nth-child(3) , .table150 a:nth-child(1)") %>%
+  html_attr("href")
+
+# another
 link_addresses <- depts_url %>%
   read_html() %>%
   html_nodes(".table150 a:first-of-type") %>%
@@ -211,52 +218,48 @@ Try using what you've learned so far in R and rvest to scrape for `name`, `phone
 
 Here's one way of going about it: 
 ```r
+library(rvest)
+library(dplyr)
+library(stringr)
+
 depts_url <- "http://www.houstontx.gov/departments.html"
 
-#get name and department
-name_dept <- depts_url %>%
-  read_html() %>%
-  html_nodes(".table150") %>%
-  html_nodes("p") %>%
-  html_nodes("a") %>%
+depts_html <- depts_url %>%
+  read_html()
+
+name <- depts_html %>%
+  html_nodes('.table150 a:nth-child(3) , .table150 a:nth-child(1)') %>%
   html_text() %>%
   gsub("\\n|\\s{2,}", " ", .) %>%
   trimws()
 
-
-#get website and email
-website_email<- depts_url %>%
-  read_html() %>%
-  html_nodes(".table150") %>%
-  html_nodes("p") %>%
-  html_nodes("a") %>%
+email <- depts_html %>%
+  html_nodes('.table150 a:nth-child(3) , .table150 a:nth-child(1)') %>%
   html_attr("href")
 
-#get phone number
+dept <- depts_html %>%
+  html_nodes('br~ br+ a') %>%
+  html_text() %>%
+  gsub("\\n|\\s{2,}", " ", .) %>%
+  trimws()
+
+website <- depts_html %>%
+  html_nodes('br~ br+ a') %>%
+  html_attr("href")
+
+# get phone number
 phone_number <- depts_url %>%
   read_html() %>%
-  html_nodes(".table150") %>%
-  html_nodes("p") %>%
+  html_nodes(".table150 p") %>%
   html_text() %>%
-  stringr::str_extract("[0-9]{3}\\.[0-9]{3}\\.[0-9]{3}") %>%
+  stringr::str_extract("[0-9]{3}\\.[0-9]{3}\\.[0-9]{4}") %>%
   unlist()
 
-#some cleaning and shaping
-name_dept <- name_dept[!name_dept == ""]
-contact_name <- name_dept[seq(1 ,by =2, length(name_dept))]
-dept <- name_dept[!name_dept %in% contact_name]
-emails <- website_email[seq(1 ,by =2, length(website_email))]
-website <- website_email[!website_email %in% emails]
-phone <- phone_number[!is.na(phone_number)]
-
-
-df <- data.frame(Names = contact_name,
+df <- data.frame(Names = name,
                  Phone = phone,
-                 Email = emails,
+                 Email = email,
                  Dept = dept,
                  Website = website)
-
-
 ```
 
 
