@@ -377,15 +377,25 @@ Luckily, there is a tool we can use called Selenium. Selenium is a piece of soft
 Using the same rvest functions combined with the power of Selenium, we can now successfully scrape the page with this script.
 
 ```r
+library(RSelenium)
+
+
 job_url <- "https://www.governmentjobs.com/careers/houston"
-rsDriver <- rsDriver(port = 4444L,browser= "chrome")
-rsDr <- rsDriver$client
+rD <- rsDriver(port = 4444L,browser= "chrome")
+rsDr <- rD$client
 rsDr$open()
-rsDr$navigate(url)
-job_link = read_html(rsDr$getPageSource()[[1]])
-dat <- job_link %>%
+rsDr$navigate(job_url)
+job_html <- rsDr$getPageSource() %>%
+  .[[1]] %>%
+  read_html()
+
+dat <- job_html %>%
   html_nodes(".table") %>%
-  html_table()
+  html_table() %>%
+  .[[1]]
+
+rsDr$close()
+rsDr$closeServer()
 ```
 
 ### rvest cheat sheet
