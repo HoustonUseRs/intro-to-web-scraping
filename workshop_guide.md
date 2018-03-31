@@ -222,32 +222,38 @@ library(rvest)
 library(dplyr)
 library(stringr)
 
+# Save department url
 depts_url <- "http://www.houstontx.gov/departments.html"
 
+# Load page
 depts_html <- depts_url %>%
   read_html()
 
+# Extract names
 name <- depts_html %>%
   html_nodes('.table150 a:nth-child(3) , .table150 a:nth-child(1)') %>%
   html_text() %>%
   gsub("\\n|\\s{2,}", " ", .) %>%
   trimws()
 
+# Extract emails
 email <- depts_html %>%
   html_nodes('.table150 a:nth-child(3) , .table150 a:nth-child(1)') %>%
   html_attr("href")
 
+# Extract departments
 dept <- depts_html %>%
   html_nodes('br~ br+ a') %>%
   html_text() %>%
   gsub("\\n|\\s{2,}", " ", .) %>%
   trimws()
 
+# Extract websites
 website <- depts_html %>%
   html_nodes('br~ br+ a') %>%
   html_attr("href")
 
-# get phone number
+# Extract phone number 
 phone_number <- depts_url %>%
   read_html() %>%
   html_nodes(".table150 p") %>%
@@ -255,6 +261,7 @@ phone_number <- depts_url %>%
   stringr::str_extract("[0-9]{3}\\.[0-9]{3}\\.[0-9]{4}") %>%
   unlist()
 
+# Combine scraped data into a table
 df <- data.frame(Names = name,
                  Phone = phone,
                  Email = email,
@@ -379,21 +386,28 @@ Using the same rvest functions combined with the power of Selenium, we can now s
 ```r
 library(RSelenium)
 
-
+# Save link for job description
 job_url <- "https://www.governmentjobs.com/careers/houston"
+
+# Start a chrome browser & selenium driver
 rD <- rsDriver(port = 4444L,browser= "chrome")
 rsDr <- rD$client
-rsDr$open()
+
+# Navigate to link in browser
 rsDr$navigate(job_url)
+
+# Read page source HTML
 job_html <- rsDr$getPageSource() %>%
   .[[1]] %>%
   read_html()
 
+# Extract table from HTML
 dat <- job_html %>%
   html_nodes(".table") %>%
   html_table() %>%
   .[[1]]
 
+# Close browser & selenium driver
 rsDr$close()
 rsDr$closeServer()
 ```
@@ -413,6 +427,7 @@ rsDr$closeServer()
 
 Quite a bit of data cleaning can be required when scraping, especially text data. Check out the [stringR](http://stringr.tidyverse.org/articles/stringr.html) package for easy text manipulation. 
 
+In some of the examples we used regex (regular expressions) to extract patterns from the text. You can find a good regex primer [here](https://github.com/zeeshanu/learn-regex)
 
 Review what you learned today and more with this rvest [Data Camp tutorial](https://www.datacamp.com/community/news/web-scraping-in-r-rvest-tutorial-43z6wf5u86)
 
