@@ -91,11 +91,12 @@ The code we see when we inspect the page is what the browser translates into the
 
 We can look at the HTML, or the code page content.  If we inspect the code specifically for the name of the first person by right clicking on it and choosing the "Inspect" option, we see the HTML for just that link highlighted.
 
-![An example of HTML, image from Jon Duckett's JavaScript and jQuery book](./assets/html-element-duckett-javascript-and-jquery-page.png)
 
 We can see both the text of the link in between the `<a>` and `</a>` things. We also can see the address it links to by the `href=` thing.  Let's inspect the name of the second person by right clicking on it and choosing the "Inspect" option as before.  We see a similar pattern with the second person's name and email link.
 
 The code for pretty much any link on a website will look similar.  The `<a>` and `</a>` things are the opening and closing tags.  The `href=` thing is called an attribute, where the attribute is named `href` and the value is the link address itself.  This unit of HTML, with the opening and closing tags, the attributes, and the content the tag encloses, is called an HTML element.
+
+![An example of HTML, image from Jon Duckett's JavaScript and jQuery book](./assets/html-element-duckett-javascript-and-jquery-page.png)
 
 If we glance at the HTML around the HTML for the links, we will see a similar pattern of open and closing tags for content, along with different attributes for that content on the opening tags.
 
@@ -170,7 +171,7 @@ link_addresses <- depts_url %>%
   html_nodes(".table150 a:nth-child(3) , .table150 a:nth-child(1)") %>%
   html_attr("href")
 
-# another
+# another option for the selector
 link_addresses <- depts_url %>%
   read_html() %>%
   html_nodes(".table150 a:first-of-type") %>%
