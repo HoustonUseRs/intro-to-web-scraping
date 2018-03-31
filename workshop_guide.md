@@ -23,7 +23,7 @@ for:
 * Analysis
 * Text processing
 
-"Scraping" allows us to "scrape" information that we want from existing websites.  Some sites will have an existing way for you to get the information or data through file downloads or API's. However, with other sites, we may not be so lucky. Web scraping empowers us to turn any web page into a source of data.
+"Scraping" allows us to "scrape" information that we want from existing websites.  Some sites will have an existing way for you to get the information or data through file downloads or APIs. However, with other sites, we may not be so lucky. Web scraping empowers us to turn any web page into a source of data.
 
 ## What we will do today
 
@@ -121,38 +121,38 @@ Let's take some selectors and try them in R.
 
 ```
 # Let's tell R to remember the url.
-depts_url <- 'http://www.houstontx.gov/departments.html'
+depts_url <- "http://www.houstontx.gov/departments.html"
 
 link_addresses <- depts_url %>%
 # First, we need to load the page.
   read_html() %>%
 # Let's select an `html_node`
-  html_node('.table150 a') %>%
+  html_node(".table150 a") %>%
 # and look at the text.
   html_text()
 
 # We can also grab the attribute `href` to get the link address as well!
 link_addresses <- depts_url %>%
   read_html() %>%
-  html_node('.table150 a') %>%
-  html_attr('href')
+  html_node(".table150 a") %>%
+  html_attr("href")
 
 # Switching `html_node` to `html_nodes` gets back all the matching link elements!
 link_addresses <- depts_url %>%
   read_html() %>%
-  html_nodes('.table150 a')
+  html_nodes(".table150 a")
 
 # So, we can get all the text values of the link elements
 link_addresses <- depts_url %>%
   read_html() %>%
-  html_nodes('.table150 a') %>%
+  html_nodes(".table150 a") %>%
   html_text()
 
 # or, all the link address from the `href` attribute.
 link_addresses <- depts_url %>%
   read_html() %>%
-  html_nodes('.table150 a') %>%
-  html_attr('href')
+  html_nodes(".table150 a") %>%
+  html_attr("href")
 
 # To grab just the emails, we can either grab just the odd values from this list
 odd_locations <- link_addresses %>%
@@ -164,8 +164,8 @@ email_addresses <- link_addresses[odd_locations]
 # or, we can adjust the CSS selector.
 link_addresses <- depts_url %>%
   read_html() %>%
-  html_nodes('.table150 a:first-of-type') %>%
-  html_attr('href')
+  html_nodes(".table150 a:first-of-type") %>%
+  html_attr("href")
 ```
 
 Now, we can code the bolded steps:
@@ -183,18 +183,18 @@ Now, we can code the bolded steps:
 
 ```r
 # Let's tell R to remember the url.
-depts_url <- 'http://www.houstontx.gov/departments.html'
+depts_url <- "http://www.houstontx.gov/departments.html"
 
 link_addresses <- depts_url %>%
 # Step 2, Load the page
   read_html() %>%
 # Step 6, Select the location
-  html_nodes('.table150 a') %>%
+  html_nodes(".table150 a") %>%
 # Step 7, Copy the information
-  html_attr('href')
+  html_attr("href")
 
 # Step 8, Open a new plain text file 
-fileConn<-file("output.txt")
+fileConn <- file("output.txt")
 
 # Step 9 & 10, Paste the information and save the file
 writeLines(link_addresses, fileConn)
@@ -207,7 +207,7 @@ The small adjustment we made to the CSS selector shows how powerful selectors ca
 
 
 BONUS CHALLENGE: 
-Try using what you've learned so far in R and rvest to scrape for 'name', 'phone number', 'email', 'department', and 'website'. This requires a little bit of data cleaning. 
+Try using what you've learned so far in R and rvest to scrape for `name`, `phone number`, `email`, `department`, and `website`. This requires a little bit of data cleaning. 
 
 Here's one way of going about it: 
 ```r
@@ -242,7 +242,7 @@ phone_number <- depts_url %>%
   unlist()
 
 #some cleaning and shaping
-name_dept <- name_dept[!name_dept == '']
+name_dept <- name_dept[!name_dept == ""]
 contact_name <- name_dept[seq(1 ,by =2, length(name_dept))]
 dept <- name_dept[!name_dept %in% contact_name]
 emails <- website_email[seq(1 ,by =2, length(website_email))]
@@ -252,7 +252,7 @@ phone <- phone_number[!is.na(phone_number)]
 
 df <- data.frame(Names = contact_name,
                  Phone = phone,
-                 Email = email,
+                 Email = emails,
                  Dept = dept,
                  Website = website)
 
@@ -262,22 +262,22 @@ df <- data.frame(Names = contact_name,
 
 ## Scrape Tables over Multiple Pages
 
-We are now going to try an example that involves 'web crawling' - a practice that requires 'looping' through multiple web pages in an automated fashion instead of one page at a time. 
+We are now going to try an example that involves "web crawling" - a practice that requires "looping" through multiple web pages in an automated fashion instead of one page at a time. 
 
 Let's take a look at some nba data. Go to this link:
 http://www.espn.com/nba/attendance. 
 
-This page presents a nice, detailed table on audience game attendance stats for different teams at different points in time. In fact, if you click on the drop down button next to 'Season', you'll see that this includes data all the way back to 2001.
+This page presents a nice, detailed table on audience game attendance stats for different teams at different points in time. In fact, if you click on the drop down button next to "Season", you'll see that this includes data all the way back to 2001.
 
 So what if we wanted to do some cool analysis on audience game attendance over time? True, we could scrape the contents a year at a time... But what if the data contained 50+ years of info??? 
 
-Luckily, rvest gives us the tools to 'crawl', or obtain data from several pages.
+Luckily, rvest gives us the tools to "crawl", or obtain data from several pages.
 
 Let's first load the url of the website.
 
-```espn_url <- 'http://www.espn.com/nba/attendance'```
+```espn_url <- "http://www.espn.com/nba/attendance"```
 
-Next, lets create a variable called ```espn_data```. Similar like we did in the last example, we are going to pipe read_html() to the url. Since the html attribute we are interested in is 'table', we will also assign that as an argument to html_node().
+Next, lets create a variable called ```espn_data```. Similar like we did in the last example, we are going to pipe read_html() to the url. Since the html attribute we are interested in is "table", we will also assign that as an argument to html_node().
 
 Since we want the data in a manageable format, we are going to also pipe ```html_table(header = TRUE)``` which will grab what we want and put it in a table, or more precisely, a dataframe.
 
@@ -286,33 +286,33 @@ espn_html <- espn_year_url %>%
   read_html()
 
 espn_year_data <- espn_html %>%
-  html_node('table')
+  html_node("table")
 ```
 
 This is scraped data from only the year 2017. How do we go about scraping data from the other years?
 
 If we go ahead and select different years from the drop down, the url we are presented with uses the template
-'http://www.espn.com/nba/attendance/_/year/', with 'year' being the only variable that changes from year to year. 
+"http://www.espn.com/nba/attendance/_/year/", with `year` being the only variable that changes from year to year. 
 
 By looping through the years, we can modify and update the url so that we can scrape all the available years.
 
 Let's assign that url template to a variable. We also want to capture the range of years that we want. We can do that with the ```seq()``` function.
 ```r
-espn_years_base_url <- 'http://www.espn.com/nba/attendance/_/year/'
+espn_years_base_url <- "http://www.espn.com/nba/attendance/_/year/"
 years <- seq(2001, 2017)
 ```
 Before we start looping through, lets create an empty dataframe. 
 ```espn_years_data <- data.frame()```
 
 Now we are ready to build our loop function!
-Our strategy is simple. We want to build out a script that performs the same actions used to  create 'espn_data', except by updating and adding on new year data to the previous year. 
+Our strategy is simple. We want to build out a script that performs the same actions used to create `espn_data`, except by updating and adding on new year data to the previous year. 
 
 ```r
 for (year in years) {
   espn_year_url <- paste0(espn_years_base_url, year)
   espn_year_data <- espn_year_url %>%
     read_html() %>%
-    html_node('table') %>%
+    html_node("table") %>%
     html_table()
   espn_years_data <- rbind(espn_years_data, espn_year_data)
 }
@@ -330,9 +330,9 @@ Another way to grab the urls for each year is to scrape for the values in the dr
 
 ```
 espn_year_urls <- espn_html  %>%
-  html_node('.tablesm') %>%
-  html_nodes('option') %>%
-  html_attr('value')
+  html_node(".tablesm") %>%
+  html_nodes("option") %>%
+  html_attr("value")
 ```
 
 Now, you can loop over each url in a similar manner:
@@ -341,16 +341,13 @@ Now, you can loop over each url in a similar manner:
 espn_years_data <- data.frame()
 for (espn_year_url in espn_year_urls) {
   espn_year_data <- espn_year_url %>%
-    paste0('http:', .) %>%
+    paste0("http:", .) %>%
     read_html() %>%
-    html_node('table') %>%
+    html_node("table") %>%
     html_table()
   espn_years_data <- rbind(espn_years_data, espn_year_data)
 }
 ```
-
-Sometimes you don't necessarily know the number of pages you need to loop over. To approach this we are going to use the `follow_link` function.
-
 
 Congrats on building your first web crawler using R! Looping through web pages is super powerful, and will allow you to analyze large amounts of interesting data floating out there on the web. 
 
@@ -364,7 +361,7 @@ Let's try scraping [https://www.governmentjobs.com/careers/houston](https://www.
 job_url <- "https://www.governmentjobs.com/careers/houston"
 job_page <- job_url %>%
   read_html() %>%
-  html_nodes('.table') %>%
+  html_nodes(".table") %>%
   html_table()
 ```
 
