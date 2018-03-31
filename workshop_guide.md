@@ -424,14 +424,18 @@ rsDr$closeServer()
 
 #### Finding help &  Extra Resources
 
+##### Data Cleaning
 
-Quite a bit of data cleaning can be required when scraping, especially text data. Check out the [stringR](http://stringr.tidyverse.org/articles/stringr.html) package for easy text manipulation. 
+Check out the [stringR](http://stringr.tidyverse.org/articles/stringr.html) package for easy text manipulation. 
 
 In some of the examples we used regex (regular expressions) to extract patterns from the text. You can find a good regex primer [here](https://github.com/zeeshanu/learn-regex)
 
+##### Tutorials
 Review what you learned today and more with this rvest [Data Camp tutorial](https://www.datacamp.com/community/news/web-scraping-in-r-rvest-tutorial-43z6wf5u86)
 
 Learn to scrape data in Python using [Beautiful Soup and Pandas](https://pythonprogramminglanguage.com/web-scraping-with-pandas-and-beautifulsoup/) 
+
+##### Scraping Outside of R 
 
 Advanced Web Crawling with [Scrapy](https://scrapy.org/)
 
