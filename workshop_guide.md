@@ -431,6 +431,8 @@ rsDr$closeServer()
 
 #### Finding help &  Extra Resources
 
+See additional example scripts at [github.com/HoustonUseRs/intro-to-web-scraping/tree/master/scripts](https://github.com/HoustonUseRs/intro-to-web-scraping/tree/master/scripts).
+
 ##### Data Cleaning
 
 Check out the [stringR](http://stringr.tidyverse.org/articles/stringr.html) package for easy text manipulation. 
